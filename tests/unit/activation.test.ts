@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { getStoreById } from "@/data/stores";
+import { getStoreById, stores } from "@/data/stores";
 import {
   ACTIVATION_WINDOW_HOURS,
   createActivation,
@@ -20,6 +20,12 @@ describe("createActivation", () => {
     const hours =
       (new Date(result.activation.expiresAt).getTime() - now.getTime()) / 3_600_000;
     expect(hours).toBe(ACTIVATION_WINDOW_HOURS);
+  });
+
+  it("has a tracking link for every store", () => {
+    for (const store of stores) {
+      expect(createActivation(store, now).ok, store.id).toBe(true);
+    }
   });
 
   it("succeeds for the other launch stores", () => {
