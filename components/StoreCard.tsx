@@ -28,7 +28,7 @@ export default function StoreCard({ store, testIdPrefix = "store-card" }: Props)
           <span className="rounded-full bg-slate-100 px-2.5 py-1 text-xs font-medium text-slate-600">
             {store.category}
           </span>
-          <span className="text-sm font-bold text-raku-600">
+          <span className="text-sm font-bold text-raku-600 dark:text-raku-400">
             {formatRate(store.cashbackRate)} Cash Back
           </span>
         </div>

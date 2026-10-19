@@ -30,10 +30,10 @@ export default function AccountPage() {
         </div>
         <div className="text-right">
           <p className="text-sm text-slate-500">Available cashback</p>
-          <p data-testid="cashback-balance" className="text-3xl font-extrabold text-raku-600">
+          <p data-testid="cashback-balance" className="text-3xl font-extrabold text-raku-600 dark:text-raku-400">
             {formatCurrency(stats.availableBalance)}
           </p>
-          <p className="text-xs text-slate-400">Next payout {formatDate(user.nextPayoutDate)}</p>
+          <p className="text-xs text-slate-500">Next payout {formatDate(user.nextPayoutDate)}</p>
         </div>
       </section>
 

@@ -25,7 +25,7 @@ export default function Header() {
             R
           </span>
           <span className="text-xl font-extrabold tracking-tight text-slate-900">
-            Raku<span className="text-raku-600">Demo</span>
+            Raku<span className="text-raku-600 dark:text-raku-400">Demo</span>
           </span>
         </Link>
         <nav aria-label="Main" className="flex flex-wrap items-center gap-1 text-sm font-medium">

@@ -12,7 +12,7 @@ export default function StatCard({ label, value, hint, testId }: Props) {
       <p data-testid={testId} className="mt-1 text-2xl font-bold text-slate-900">
         {value}
       </p>
-      {hint && <p className="mt-1 text-xs text-slate-400">{hint}</p>}
+      {hint && <p className="mt-1 text-xs text-slate-500">{hint}</p>}
     </div>
   );
 }

@@ -21,7 +21,7 @@ export default function TripsTable({ trips }: { trips: TripWithDetails[] }) {
             <tr key={trip.id} data-testid={`trip-row-${trip.id}`}>
               <td className="px-4 py-3 text-slate-600">{formatDate(trip.date)}</td>
               <td className="px-4 py-3 font-medium text-slate-900">
-                <Link href={`/stores/${trip.store.id}`} className="hover:text-raku-600">
+                <Link href={`/stores/${trip.store.id}`} className="hover:text-raku-600 dark:hover:text-raku-400">
                   {trip.store.name}
                 </Link>
               </td>

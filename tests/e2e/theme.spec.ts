@@ -46,4 +46,43 @@ test.describe("theme modes", () => {
       expect(bg).toBe("rgb(15, 23, 42)");
     }
   });
+
+  for (const scheme of ["light", "dark"] as const) {
+    test(`text keeps 4.5:1 contrast on every page in ${scheme}`, async ({ page }) => {
+      await page.goto("/");
+      await page.getByLabel("Theme").selectOption(scheme);
+      for (const path of ["/", "/stores", "/stores/nike", "/trips", "/favorites", "/account"]) {
+        await page.goto(path);
+        const low = await page.evaluate(() => {
+          const parse = (c: string) => (c.match(/[\d.]+/g) ?? []).map(Number);
+          const lum = ([r, g, b]: number[]) => {
+            const f = (v: number) => ((v /= 255) <= 0.03928 ? v / 12.92 : ((v + 0.055) / 1.055) ** 2.4);
+            return 0.2126 * f(r) + 0.7152 * f(g) + 0.0722 * f(b);
+          };
+          const bgOf = (el: Element | null): number[] | null => {
+            for (; el; el = el.parentElement) {
+              const cs = getComputedStyle(el);
+              if (cs.backgroundImage !== "none") return null; // gradient: skip
+              const [r, g, b, a = 1] = parse(cs.backgroundColor);
+              if (a > 0.99) return [r, g, b];
+            }
+            return [255, 255, 255];
+          };
+          const bad: string[] = [];
+          for (const el of Array.from(document.querySelectorAll("main *, header *, footer *"))) {
+            const own = Array.from(el.childNodes).some((n) => n.nodeType === 3 && n.textContent?.trim());
+            if (!own) continue;
+            const bg = bgOf(el);
+            if (!bg) continue;
+            const fg = parse(getComputedStyle(el).color).slice(0, 3);
+            const [a, b] = [lum(fg), lum(bg)].sort((x, y) => y - x);
+            const ratio = (a + 0.05) / (b + 0.05);
+            if (ratio < 4.5) bad.push(`${el.tagName} "${el.textContent?.trim().slice(0, 20)}" ${ratio.toFixed(2)}`);
+          }
+          return bad;
+        });
+        expect(low, `${path} in ${scheme}`).toEqual([]);
+      }
+    });
+  }
 });

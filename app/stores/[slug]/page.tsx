@@ -34,7 +34,7 @@ export default async function StorePage({ params }: Params) {
   return (
     <div className="space-y-10">
       <nav aria-label="Breadcrumb" className="text-sm text-slate-500">
-        <Link href="/stores" className="hover:text-raku-600">
+        <Link href="/stores" className="hover:text-raku-600 dark:hover:text-raku-400">
           Stores
         </Link>{" "}
         / <span className="text-slate-800">{store.name}</span>
