@@ -3,7 +3,10 @@ import { getStoreById, stores } from "@/data/stores";
 import {
   ACTIVATION_WINDOW_HOURS,
   createActivation,
+  getActiveActivation,
   isActivationActive,
+  listActiveActivations,
+  type Activation,
 } from "@/lib/activation";
 
 describe("createActivation", () => {
@@ -49,5 +52,31 @@ describe("isActivationActive", () => {
     expect(isActivationActive({ ...base, expiresAt: "2026-10-07T12:00:00Z" }, now)).toBe(true);
     expect(isActivationActive({ ...base, expiresAt: "2026-10-06T11:59:59Z" }, now)).toBe(false);
     expect(isActivationActive(undefined, now)).toBe(false);
+  });
+});
+
+describe("getActiveActivation and listActiveActivations", () => {
+  const now = new Date("2026-10-06T12:00:00Z");
+  const make = (storeId: string, expiresAt: string): Activation => ({
+    storeId,
+    storeName: storeId,
+    cashbackRate: 2,
+    trackingLink: "https://x.example",
+    activatedAt: now.toISOString(),
+    expiresAt,
+  });
+  const all: Record<string, Activation> = {
+    target: make("target", "2026-10-07T12:00:00Z"),
+    nike: make("nike", "2026-10-06T11:59:59Z"),
+  };
+
+  it("returns the activation only while it is unexpired", () => {
+    expect(getActiveActivation(all, "target", now)?.storeId).toBe("target");
+    expect(getActiveActivation(all, "nike", now)).toBeUndefined();
+    expect(getActiveActivation(all, "missing", now)).toBeUndefined();
+  });
+
+  it("lists only unexpired activations", () => {
+    expect(listActiveActivations(all, now).map((a) => a.storeId)).toEqual(["target"]);
   });
 });

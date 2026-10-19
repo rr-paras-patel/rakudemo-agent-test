@@ -55,3 +55,19 @@ export function createActivation(store: Store, now: Date = new Date()): Activati
 export function isActivationActive(activation: Activation | undefined, now: Date = new Date()): boolean {
   return !!activation && new Date(activation.expiresAt).getTime() > now.getTime();
 }
+
+export function getActiveActivation(
+  all: Record<string, Activation>,
+  storeId: string,
+  now: Date = new Date(),
+): Activation | undefined {
+  const activation = all[storeId];
+  return isActivationActive(activation, now) ? activation : undefined;
+}
+
+export function listActiveActivations(
+  all: Record<string, Activation>,
+  now: Date = new Date(),
+): Activation[] {
+  return Object.values(all).filter((a) => isActivationActive(a, now));
+}

@@ -2,7 +2,13 @@
 
 import { useCallback, useSyncExternalStore } from "react";
 import type { Store } from "@/data/stores";
-import { createActivation, isActivationActive, type Activation, type ActivationResult } from "@/lib/activation";
+import {
+  createActivation,
+  getActiveActivation,
+  listActiveActivations,
+  type Activation,
+  type ActivationResult,
+} from "@/lib/activation";
 import { toggleFavorite } from "@/lib/favorites";
 import { createLocalStore } from "@/lib/local-store";
 
@@ -52,15 +58,9 @@ export function useActivations() {
     return result;
   }, []);
 
-  const getActive = useCallback(
-    (storeId: string) => {
-      const a = all[storeId];
-      return isActivationActive(a) ? a : undefined;
-    },
-    [all],
-  );
+  const getActive = useCallback((storeId: string) => getActiveActivation(all, storeId), [all]);
 
-  const activeList = Object.values(all).filter((a) => isActivationActive(a));
+  const activeList = listActiveActivations(all);
 
   return { activate, getActive, activeList };
 }
