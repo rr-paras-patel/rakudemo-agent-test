@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import type { Store } from "@/data/stores";
 import { formatRate } from "@/lib/format";
 import { useActivations } from "@/lib/hooks";
@@ -11,10 +12,15 @@ interface Props {
 export default function ActivateCashbackButton({ store }: Props) {
   const { activate, getActive } = useActivations();
   const activation = getActive(store.id);
+  const [error, setError] = useState<string | null>(null);
 
   function handleClick() {
     const result = activate(store);
-    if (!result.ok) return;
+    if (!result.ok) {
+      setError(`We couldn't activate cashback at ${store.name} right now. Please try again later.`);
+      return;
+    }
+    setError(null);
   }
 
   return (
@@ -28,6 +34,16 @@ export default function ActivateCashbackButton({ store }: Props) {
       >
         {activation ? "Cashback Activated" : "Activate Cashback"}
       </button>
+
+      {error && (
+        <p
+          role="alert"
+          data-testid="activation-error"
+          className="rounded-xl border border-red-200 bg-red-50 p-4 text-sm text-red-900 dark:border-red-500/30 dark:bg-red-500/10 dark:text-red-100"
+        >
+          {error}
+        </p>
+      )}
 
       {activation && (
         <div

@@ -124,6 +124,34 @@ describe("ActivateCashbackButton", () => {
     render(<ActivateCashbackButton store={getStoreById("adidas")!} />);
     expect(screen.getByTestId("activation-confirmation")).toBeInTheDocument();
   });
+
+  it("shows an error message when activation fails (missing-tracking-link)", async () => {
+    const user = userEvent.setup();
+    const unknownStore = { ...getStoreById("nike")!, id: "no-such-store", name: "Mystery Shop" };
+    render(<ActivateCashbackButton store={unknownStore} />);
+
+    await user.click(screen.getByRole("button", { name: "Activate Cashback" }));
+
+    const error = await screen.findByTestId("activation-error");
+    expect(error).toHaveAttribute("role", "alert");
+    expect(error).toHaveTextContent("We couldn't activate cashback at Mystery Shop");
+    expect(screen.queryByTestId("activation-confirmation")).not.toBeInTheDocument();
+    expect(localStorage.getItem(ACTIVATIONS_KEY)).toBeNull();
+  });
+
+  it("clears the error message after a successful activation", async () => {
+    const user = userEvent.setup();
+    const failing = { ...getStoreById("nike")!, id: "no-such-store", name: "Mystery Shop" };
+    const { rerender } = render(<ActivateCashbackButton store={failing} />);
+    await user.click(screen.getByRole("button", { name: "Activate Cashback" }));
+    expect(await screen.findByTestId("activation-error")).toBeInTheDocument();
+
+    rerender(<ActivateCashbackButton store={getStoreById("target")!} />);
+    await user.click(screen.getByRole("button", { name: "Activate Cashback" }));
+
+    expect(await screen.findByTestId("activation-confirmation")).toBeInTheDocument();
+    expect(screen.queryByTestId("activation-error")).not.toBeInTheDocument();
+  });
 });
 
 describe("TripsTable", () => {
