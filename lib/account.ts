@@ -1,4 +1,4 @@
-import type { TripWithDetails } from "@/lib/trips";
+import { countsTowardEarnings, type TripWithDetails } from "@/lib/trips";
 
 export interface AccountStats {
   totalTrips: number;
@@ -18,7 +18,7 @@ export interface AccountStats {
 const round = (n: number) => Math.round(n * 100) / 100;
 
 export function getAccountStats(trips: TripWithDetails[]): AccountStats {
-  const counted = trips.filter((t) => t.status !== "declined");
+  const counted = trips.filter(countsTowardEarnings);
   const sum = (status: TripWithDetails["status"]) =>
     round(trips.filter((t) => t.status === status).reduce((s, t) => s + t.cashback, 0));
 
