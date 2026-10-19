@@ -8,3 +8,6 @@ Checks:
   data/stores.ts:107 logo = "/logos/best-buy.svg"
   public/logos/best-buy.svg exists
 Not run: browser screenshots (AC1 store page rendering not exercised in a browser)
+QA re-run (tester, head 96346e3): typecheck clean · vitest 12 files / 64 tests passed
+Mutation: data/stores.ts nike logo -> /logos/nope.svg => store-logos.test.ts "nike logo exists under public/" FAILED (1 failed | 11 passed); reverted
+Dev server (next dev): GET /logos/best-buy.svg 200 · GET /logos/bestbuy.svg 404 · /stores and /stores/best-buy HTML reference /logos/best-buy.svg
