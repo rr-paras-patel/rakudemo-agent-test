@@ -1,5 +1,5 @@
 import Link from "next/link";
-import type { TripWithDetails } from "@/lib/trips";
+import { countsTowardEarnings, type TripWithDetails } from "@/lib/trips";
 import { formatCurrency, formatDate } from "@/lib/format";
 import StatusBadge from "@/components/StatusBadge";
 
@@ -27,7 +27,7 @@ export default function TripsTable({ trips }: { trips: TripWithDetails[] }) {
               </td>
               <td className="px-4 py-3 text-right">{formatCurrency(trip.amount)}</td>
               <td className="px-4 py-3 text-right font-semibold text-slate-900">
-                {trip.status === "declined" ? "—" : formatCurrency(trip.cashback)}
+                {countsTowardEarnings(trip) ? formatCurrency(trip.cashback) : "—"}
               </td>
               <td className="px-4 py-3">
                 <StatusBadge status={trip.status} />
