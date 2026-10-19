@@ -71,11 +71,3 @@ First-time Playwright setup: `npm run e2e:install`.
 
 GitHub Actions (`.github/workflows/ci.yml`) runs typecheck, Vitest, the production build, and Playwright on every pull request.
 
-## Deploying to Vercel
-
-1. Push the repository to GitHub.
-2. In Vercel, choose **Add New → Project** and import the repository.
-3. Keep the detected **Next.js** framework preset. Build command `npm run build`, no environment variables required.
-4. Deploy. Every pull request gets a preview deployment automatically.
-
-Or from the CLI: `npx vercel` for a preview and `npx vercel --prod` for production.
