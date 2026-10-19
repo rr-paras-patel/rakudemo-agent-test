@@ -17,7 +17,7 @@ export default function AccountPage() {
 
   return (
     <div className="space-y-8">
-      <section className="flex flex-wrap items-center gap-5 rounded-3xl bg-white p-6 shadow-card ring-1 ring-slate-100">
+      <section className="flex flex-wrap items-center gap-5 rounded-3xl bg-surface p-6 shadow-card ring-1 ring-slate-100">
         <div className="flex h-16 w-16 items-center justify-center rounded-full bg-raku-600 text-xl font-bold text-white">
           {initials}
         </div>
@@ -30,10 +30,10 @@ export default function AccountPage() {
         </div>
         <div className="text-right">
           <p className="text-sm text-slate-500">Available cashback</p>
-          <p data-testid="cashback-balance" className="text-3xl font-extrabold text-raku-600">
+          <p data-testid="cashback-balance" className="text-3xl font-extrabold text-raku-600 dark:text-raku-400">
             {formatCurrency(stats.availableBalance)}
           </p>
-          <p className="text-xs text-slate-400">Next payout {formatDate(user.nextPayoutDate)}</p>
+          <p className="text-xs text-slate-500">Next payout {formatDate(user.nextPayoutDate)}</p>
         </div>
       </section>
 

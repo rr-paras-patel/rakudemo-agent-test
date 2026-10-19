@@ -21,7 +21,7 @@ export default function ActiveOffers() {
           {activeList.map((a) => (
             <li
               key={a.storeId}
-              className="flex items-center justify-between rounded-xl bg-white px-4 py-3 text-sm shadow-card ring-1 ring-slate-100"
+              className="flex items-center justify-between rounded-xl bg-surface px-4 py-3 text-sm shadow-card ring-1 ring-slate-100"
             >
               <Link href={`/stores/${a.storeId}`} className="font-semibold text-slate-900">
                 {a.storeName}

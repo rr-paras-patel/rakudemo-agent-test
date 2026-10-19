@@ -35,7 +35,7 @@ export default function StoreBrowser({ stores }: Props) {
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             placeholder="Search stores, e.g. Nike, electronics"
-            className="w-full rounded-full border border-slate-200 bg-white px-5 py-3 text-sm shadow-sm outline-none focus:border-raku-500 focus:ring-2 focus:ring-raku-100"
+            className="w-full rounded-full border border-slate-200 bg-surface px-5 py-3 text-sm shadow-sm outline-none focus:border-raku-500 focus:ring-2 focus:ring-raku-100"
           />
         </div>
       </div>
@@ -51,7 +51,7 @@ export default function StoreBrowser({ stores }: Props) {
             className={`rounded-full px-4 py-1.5 text-sm font-medium transition ${
               category === c
                 ? "bg-raku-600 text-white"
-                : "bg-white text-slate-600 ring-1 ring-slate-200 hover:ring-raku-500"
+                : "bg-surface text-slate-600 ring-1 ring-slate-200 hover:ring-raku-500"
             }`}
           >
             {c}
@@ -75,7 +75,7 @@ export default function StoreBrowser({ stores }: Props) {
       ) : (
         <div
           data-testid="no-results"
-          className="rounded-2xl border border-dashed border-slate-300 bg-white p-10 text-center text-slate-500"
+          className="rounded-2xl border border-dashed border-slate-300 bg-surface p-10 text-center text-slate-500"
         >
           No stores match your search. Try a different name or category.
         </div>

@@ -5,7 +5,7 @@ import StatusBadge from "@/components/StatusBadge";
 
 export default function TripsTable({ trips }: { trips: TripWithDetails[] }) {
   return (
-    <div className="overflow-x-auto rounded-2xl bg-white shadow-card ring-1 ring-slate-100">
+    <div className="overflow-x-auto rounded-2xl bg-surface shadow-card ring-1 ring-slate-100">
       <table className="w-full min-w-[560px] text-left text-sm" data-testid="trips-table">
         <thead className="border-b border-slate-100 text-xs uppercase tracking-wide text-slate-500">
           <tr>
@@ -21,7 +21,7 @@ export default function TripsTable({ trips }: { trips: TripWithDetails[] }) {
             <tr key={trip.id} data-testid={`trip-row-${trip.id}`}>
               <td className="px-4 py-3 text-slate-600">{formatDate(trip.date)}</td>
               <td className="px-4 py-3 font-medium text-slate-900">
-                <Link href={`/stores/${trip.store.id}`} className="hover:text-raku-600">
+                <Link href={`/stores/${trip.store.id}`} className="hover:text-raku-600 dark:hover:text-raku-400">
                   {trip.store.name}
                 </Link>
               </td>

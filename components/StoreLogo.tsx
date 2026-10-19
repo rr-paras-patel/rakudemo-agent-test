@@ -15,7 +15,7 @@ export default function StoreLogo({ store, size = 64, className = "" }: Props) {
       width={size}
       height={size}
       data-testid={`store-logo-${store.id}`}
-      className={`rounded-xl object-contain bg-white ${className}`}
+      className={`rounded-xl object-contain bg-surface ${className}`}
     />
   );
 }
