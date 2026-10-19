@@ -1,10 +1,17 @@
 import type { Config } from "tailwindcss";
 
+const slate = Object.fromEntries(
+  [50, 100, 200, 300, 400, 500, 600, 700, 800, 900].map((n) => [n, `rgb(var(--slate-${n}) / <alpha-value>)`]),
+);
+
 const config: Config = {
+  darkMode: "class",
   content: ["./app/**/*.{ts,tsx}", "./components/**/*.{ts,tsx}"],
   theme: {
     extend: {
       colors: {
+        slate,
+        surface: "rgb(var(--surface) / <alpha-value>)",
         raku: {
           50: "#fff1f2",
           100: "#ffe0e3",

@@ -17,7 +17,7 @@ export default function AccountPage() {
 
   return (
     <div className="space-y-8">
-      <section className="flex flex-wrap items-center gap-5 rounded-3xl bg-white p-6 shadow-card ring-1 ring-slate-100">
+      <section className="flex flex-wrap items-center gap-5 rounded-3xl bg-surface p-6 shadow-card ring-1 ring-slate-100">
         <div className="flex h-16 w-16 items-center justify-center rounded-full bg-raku-600 text-xl font-bold text-white">
           {initials}
         </div>

@@ -67,7 +67,7 @@ export default function HomePage() {
             ["2. Shop", "Complete your purchase as usual within 24 hours."],
             ["3. Earn", "Cashback shows up as pending, then confirmed, then paid."],
           ].map(([title, body]) => (
-            <li key={title} className="rounded-2xl bg-white p-5 shadow-card ring-1 ring-slate-100">
+            <li key={title} className="rounded-2xl bg-surface p-5 shadow-card ring-1 ring-slate-100">
               <p className="font-bold text-raku-600">{title}</p>
               <p className="mt-1 text-sm text-slate-600">{body}</p>
             </li>

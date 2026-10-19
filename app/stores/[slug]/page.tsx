@@ -40,7 +40,7 @@ export default async function StorePage({ params }: Params) {
         / <span className="text-slate-800">{store.name}</span>
       </nav>
 
-      <section className="grid gap-8 rounded-3xl bg-white p-6 shadow-card ring-1 ring-slate-100 md:grid-cols-[auto_1fr] md:p-10">
+      <section className="grid gap-8 rounded-3xl bg-surface p-6 shadow-card ring-1 ring-slate-100 md:grid-cols-[auto_1fr] md:p-10">
         <StoreLogo store={store} size={112} className="ring-1 ring-slate-100" />
         <div className="space-y-4">
           <div className="flex flex-wrap items-start justify-between gap-3">
@@ -54,7 +54,7 @@ export default async function StorePage({ params }: Params) {
           <div className="flex flex-wrap items-center gap-3">
             <span
               data-testid="store-cashback-rate"
-              className="rounded-full bg-raku-50 px-4 py-1.5 text-lg font-bold text-raku-700"
+              className="rounded-full bg-raku-50 px-4 py-1.5 text-lg font-bold text-raku-700 dark:bg-raku-700/30 dark:text-raku-100"
             >
               {formatRate(store.cashbackRate)} Cash Back
             </span>

@@ -5,7 +5,7 @@ import StatusBadge from "@/components/StatusBadge";
 
 export default function TripsTable({ trips }: { trips: TripWithDetails[] }) {
   return (
-    <div className="overflow-x-auto rounded-2xl bg-white shadow-card ring-1 ring-slate-100">
+    <div className="overflow-x-auto rounded-2xl bg-surface shadow-card ring-1 ring-slate-100">
       <table className="w-full min-w-[560px] text-left text-sm" data-testid="trips-table">
         <thead className="border-b border-slate-100 text-xs uppercase tracking-wide text-slate-500">
           <tr>
