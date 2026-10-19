@@ -1,0 +1,10 @@
+Issue #7 QA v1 · branch issue-7-stores-best-buy-logo-path @ 5080ed0
+Command: npm ci --silent && npm run typecheck && npm test
+typecheck: tsc --noEmit (no errors)
+vitest run: Test Files 12 passed (12) · Tests 64 passed (64)
+Targeted: npx vitest run tests/regression/best-buy-logo.test.tsx tests/regression/store-logos.test.ts
+  Test Files 2 passed (2) · Tests 13 passed (13)
+Checks:
+  data/stores.ts:107 logo = "/logos/best-buy.svg"
+  public/logos/best-buy.svg exists
+Not run: browser screenshots (AC1 store page rendering not exercised in a browser)
