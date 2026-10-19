@@ -62,7 +62,7 @@ Cashback on a purchase is `amount × rate`, rounded to the nearest cent (`lib/ca
 | `npm test` | All Vitest tests (unit, component, regression) |
 | `npm run test:unit` | Unit and component tests only |
 | `npm run test:regression` | Vitest regression tests only |
-| `npm run test:e2e` | Playwright end-to-end tests (builds and starts the app on port 3100) |
+| `npm run test:e2e` | Playwright end-to-end tests (builds and starts the app on port 3217) |
 | `npm run test:e2e:regression` | Playwright tests tagged `@regression` |
 | `npm run test:all` | Vitest and Playwright |
 | `npm run typecheck` | TypeScript type check |
