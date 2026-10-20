@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { formatRate } from "@/lib/format";
+import { formatDateTime, formatRate } from "@/lib/format";
 import { useActivations } from "@/lib/hooks";
 
 export default function ActiveOffers() {
@@ -27,7 +27,7 @@ export default function ActiveOffers() {
                 {a.storeName}
               </Link>
               <span className="text-slate-500">
-                {formatRate(a.cashbackRate)} until {new Date(a.expiresAt).toLocaleString("en-US")}
+                {formatRate(a.cashbackRate)} until {formatDateTime(a.expiresAt)}
               </span>
             </li>
           ))}

@@ -11,6 +11,10 @@ export function formatRate(rate: number): string {
   return `${Number.isInteger(rate) ? rate : rate.toString()}%`;
 }
 
+export function formatDateTime(iso: string): string {
+  return new Date(iso).toLocaleString("en-US");
+}
+
 export function formatDate(iso: string): string {
   const d = new Date(`${iso.slice(0, 10)}T00:00:00Z`);
   return d.toLocaleDateString("en-US", {

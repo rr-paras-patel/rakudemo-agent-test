@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import type { Store } from "@/data/stores";
-import { formatRate } from "@/lib/format";
+import { formatDateTime, formatRate } from "@/lib/format";
 import { useActivations } from "@/lib/hooks";
 
 interface Props {
@@ -54,7 +54,7 @@ export default function ActivateCashbackButton({ store }: Props) {
           <p className="font-semibold">Cashback activated!</p>
           <p className="mt-1">
             You&apos;ll earn {formatRate(activation.cashbackRate)} cash back at {store.name}. Offer
-            valid until {new Date(activation.expiresAt).toLocaleString("en-US")}.
+            valid until {formatDateTime(activation.expiresAt)}.
           </p>
           <a
             href={store.url}
