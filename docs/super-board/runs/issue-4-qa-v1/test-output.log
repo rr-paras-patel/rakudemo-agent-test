@@ -1,0 +1,20 @@
+
+> rakudemo@0.1.0 typecheck
+> tsc --noEmit
+
+
+> rakudemo@0.1.0 test
+> vitest run
+
+(!) Your Vite config uses features that are unsupported by `configLoader: 'native'`, which is planned to become the default in a future major version of Vite:
+  - ESM syntax in a file loaded as CommonJS (vitest.config.ts:1:1). Use a `.mjs` extension or set `"type": "module"` in the closest package.json
+Set `VITE_CONFIG_NATIVE_IGNORE_WARNING=true` to suppress this warning.
+
+ RUN  v5.0.3 /Users/paras.patel/Workspace-Local/agentcore-trials/rakudemo-agent-test/.claude/worktrees/issue-4-qa
+
+
+ Test Files  13 passed (13)
+      Tests  70 passed (70)
+   Start at  15:46:39
+   Duration  978ms (environment 60%, setup 25%, tests 5%, transform 5%, import 4%, worker 1%)
+
